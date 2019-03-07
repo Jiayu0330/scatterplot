@@ -15,7 +15,7 @@ var drawGraph = function(data)
     top: 10,
     bottom: 40,
     left: 10,
-    right: 10
+    right: 100
   }
 
   var width = screen.width - margins.left - margins.right;
@@ -34,9 +34,9 @@ var drawGraph = function(data)
 
    //plot land
   var plotLand = svg.append("g")
-                    .classed("plot",true);
+                    .classed("plot",true)
                     .attr("transform","translate("
-                          +margins.left+","margins.top+")");
+                          +margins.left+","+margins.top+")");
 
   var students = plotLand.selectAll("g")
                          .data(data)
@@ -45,7 +45,7 @@ var drawGraph = function(data)
                          .attr("fill",function(d) {return colors(d.name)});
 
   students.selectAll("circle")
-          .data(function(d) {return d.grade})
+          .data(function(d) {return d.grades})
           .enter()
           .append("circle")
           .attr("cx",function(d,i) {return xScale(i)})
@@ -70,7 +70,7 @@ var drawGraph = function(data)
              .attr("y",0)
              .attr("width",10)
              .attr("height",10)
-             .attr("fill",function(d) {return colors(d.name)}));
+             .attr("fill",function(d) {return colors(d.name)});
 
   legendLines.append("text")
              .attr("x",20)
@@ -84,7 +84,7 @@ var drawGraph = function(data)
      .classed("xAxis",true)
      .call(xAxis)
      .attr("transform","translate("
-           margins.left+","+(margins.top+height+10)+")");
+           +margins.left+","+(margins.top+height+10)+")");
 
 }
 
