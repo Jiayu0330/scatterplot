@@ -1,12 +1,12 @@
-var drawGraph = function(data)
+var drawGraph = function(data,svgName,w,h)
 {
   var screen =
   {
-    width:500,
-    height:400
+    width:w,
+    height:h
   }
 
-  var svg = d3.select("svg")
+  var svg = d3.select(svgName)
               .attr("width",screen.width)
               .attr("height",screen.height);
 
@@ -91,11 +91,31 @@ var drawGraph = function(data)
 
 var gradesP = d3.json("gradeData.json");
 
+var svgs=[
+  {
+    name:".first",
+    width:700,
+    height:300
+  },
+  {
+    name:".second",
+    width:500,
+    height:500
+  },
+  {
+    name:".third",
+    width:1000,
+    height:400
+  },
+]
+
 gradesP.then(function(data)
 {
-  drawGraph(data);
-},
+  svgs.forEach(function(d,i)
+  {
+    drawGraph(data,svgs[i].name,svgs[i].width,svgs[i].height);
+  })},
 function(err)
 {
   console.log(err);
-})
+});
