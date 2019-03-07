@@ -14,7 +14,7 @@ var drawGraph = function(data,svgName,w,h)
   {
     top: 10,
     bottom: 40,
-    left: 10,
+    left: 50,
     right: 100
   }
 
@@ -30,7 +30,7 @@ var drawGraph = function(data,svgName,w,h)
                  .domain([0,100])
                  .range([height,0]);
 
-  var colors = d3.scaleOrdinal(d3.schemeAccent);
+  var colors = d3.scaleOrdinal(d3.schemeSet3);
 
    //plot land
   var plotLand = svg.append("g")
@@ -50,7 +50,9 @@ var drawGraph = function(data,svgName,w,h)
           .append("circle")
           .attr("cx",function(d,i) {return xScale(i)})
           .attr("cy",function(d) {return yScale(d)})
-          .attr("r",10);
+          .attr("r",8)
+          .attr("stroke","#1F3641")
+          .attr("stroke-width",3);
 
    //the legend
   var legend = svg.append("g")
@@ -63,7 +65,7 @@ var drawGraph = function(data,svgName,w,h)
                           .append("g")
                           .classed("legendLines",true)
                           .attr("transform",function(d,i)
-                                {return "translate(0,"+(i*20)+")"});
+                                {return "translate(0,"+(i*30)+")"});
 
   legendLines.append("rect")
              .attr("x",0)
@@ -75,7 +77,10 @@ var drawGraph = function(data,svgName,w,h)
   legendLines.append("text")
              .attr("x",20)
              .attr("y",10)
-             .text(function(d) {return d.name});
+             .text(function(d) {return d.name})
+             .attr("fill","white")
+             .style("font-size","20")
+             .style("font-style","italic");
 
   //create axis
   var xAxis = d3.axisBottom(xScale);
@@ -84,7 +89,17 @@ var drawGraph = function(data,svgName,w,h)
      .classed("xAxis",true)
      .call(xAxis)
      .attr("transform","translate("
-           +margins.left+","+(margins.top+height+10)+")");
+           +margins.left+","+(margins.top+height+10)+")")
+     .attr("color","white")
+     .style("font-size","15")
+     .style("font-weight","bold");
+
+  var yAxis = d3.axisLeft(yScale);
+
+  svg.append("g").classed("yAxis",true)
+                .call(yAxis)
+                .attr("transform","translate("
+                      +margins.left+","+(margins.top+width+10)+")");
 
 }
 
@@ -95,11 +110,11 @@ var svgs=[
   {
     name:".first",
     width:700,
-    height:300
+    height:250
   },
   {
     name:".second",
-    width:500,
+    width:800,
     height:500
   },
   {
