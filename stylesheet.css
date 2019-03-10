@@ -12,8 +12,8 @@
   color: white;
 }
 
-.first, .second, .third, .newSvgs{
-  margin: 20px;
+.first, .second, .third, .newSvg1, .newSvg2, .newSvg3, .newSvg4, .newSvg5, .newSvg6, .newSvg7, .newSvg8, .newSvg9, .newSvg10, .newSvg11, .newSvg12{
+  margin: 2%;
 }
 
 .inputBox .width, .inputBox .height{
