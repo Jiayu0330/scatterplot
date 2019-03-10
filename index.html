@@ -7,14 +7,28 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
   </head>
   <body bgcolor="#2A4A59">
+    <div style="text-align:center;" />
+    <div class="title">
+      Grade Data</div>
 
-      <svg class=first></svg>
-      <br>
-      <br>
-      <svg class=second></svg>
-      <br>
-      <br>
-      <svg class=third></svg>
+      <svg class="first"></svg>
+
+      <svg class="second"></svg>
+
+      <svg class="third"></svg>
+
+      <div class="newSvgs"></div>
+
+      <div class="add">
+        Get your own scatter plot!</div>
+
+      <div class="inputBox">
+      <p class="width">Width:
+        <input id="widthInput" size="5" maxlength="4" /></p>
+      <p class="height">Height:
+        <input id="heightInput" size="5" maxlength="4" /></p>
+      <button onclick="getInput()"" type="button" id="getGraphButton">Try me:)</button>
+      </div>
 
       <script type="text/javascript" src="graph.js">
       </script>

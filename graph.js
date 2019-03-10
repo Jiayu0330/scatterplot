@@ -19,7 +19,9 @@ var drawGraph = function(data,svgName,w,h)
   }
 
   var width = screen.width - margins.left - margins.right;
+  //console.log(width);
   var height = screen.height - margins.top - margins.bottom;
+  //console.log(height);
 
    //scales usually go here
   var xScale = d3.scaleLinear()
@@ -50,7 +52,7 @@ var drawGraph = function(data,svgName,w,h)
           .append("circle")
           .attr("cx",function(d,i) {return xScale(i)})
           .attr("cy",function(d) {return yScale(d)})
-          .attr("r",8)
+          .attr("r",7)
           .attr("stroke","#1F3641")
           .attr("stroke-width",3);
 
@@ -67,16 +69,17 @@ var drawGraph = function(data,svgName,w,h)
                           .attr("transform",function(d,i)
                                 {return "translate(0,"+(i*30)+")"});
 
-  legendLines.append("rect")
-             .attr("x",30)
-             .attr("y",0)
-             .attr("width",10)
-             .attr("height",10)
-             .attr("fill",function(d) {return colors(d.name)});
+  legendLines.append("circle")
+             .attr("cx",40)
+             .attr("cy",height-250)
+             .attr("r",7)
+             .attr("fill",function(d) {return colors(d.name)})
+             .attr("stroke","#1F3641")
+             .attr("stroke-width",3);
 
   legendLines.append("text")
              .attr("x",50)
-             .attr("y",10)
+             .attr("y",height-245)
              .text(function(d) {return d.name})
              .attr("fill","white")
              .style("font-size","20")
@@ -115,7 +118,7 @@ var svgs=[
   {
     name:".first",
     width:700,
-    height:250
+    height:300
   },
   {
     name:".second",
@@ -128,6 +131,30 @@ var svgs=[
     height:400
   },
 ]
+
+var clicks = 0;
+
+var getInput = function()
+{
+  var widthInput = document.getElementById("widthInput").value;
+  var heightInput = document.getElementById("heightInput").value;
+
+  clicks = clicks + 1;
+
+  var n = clicks.toString();
+
+  d3.select(".newSvgs").append("svg")
+    .attr("class","newSvg"+n);
+
+  gradesP.then(function(data)
+  {
+    drawGraph(data,".newSvg"+n,widthInput,heightInput);
+  },
+  function(err)
+  {
+    console.log(err);
+  });
+}
 
 gradesP.then(function(data)
 {
