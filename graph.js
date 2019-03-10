@@ -14,8 +14,8 @@ var drawGraph = function(data,svgName,w,h)
   {
     top: 10,
     bottom: 40,
-    left: 50,
-    right: 100
+    left: 80,
+    right: 110
   }
 
   var width = screen.width - margins.left - margins.right;
@@ -68,14 +68,14 @@ var drawGraph = function(data,svgName,w,h)
                                 {return "translate(0,"+(i*30)+")"});
 
   legendLines.append("rect")
-             .attr("x",0)
+             .attr("x",30)
              .attr("y",0)
              .attr("width",10)
              .attr("height",10)
              .attr("fill",function(d) {return colors(d.name)});
 
   legendLines.append("text")
-             .attr("x",20)
+             .attr("x",50)
              .attr("y",10)
              .text(function(d) {return d.name})
              .attr("fill","white")
@@ -89,17 +89,22 @@ var drawGraph = function(data,svgName,w,h)
      .classed("xAxis",true)
      .call(xAxis)
      .attr("transform","translate("
-           +margins.left+","+(margins.top+height+10)+")")
+           +(margins.left-width/20)+","+(margins.top+height)+")")
      .attr("color","white")
      .style("font-size","15")
      .style("font-weight","bold");
 
   var yAxis = d3.axisLeft(yScale);
 
-  svg.append("g").classed("yAxis",true)
-                .call(yAxis)
-                .attr("transform","translate("
-                      +margins.left+","+(margins.top+width+10)+")");
+  svg.append("g")
+     .classed("yAxis",true)
+     .call(yAxis)
+     .attr("transform","translate("
+           +(margins.left-width/20)+",10)")
+     .attr("color","white")
+     .style("font-size","15")
+     .style("font-weight","bold");
+
 
 }
 
