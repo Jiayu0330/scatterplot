@@ -26,4 +26,11 @@
   background-color: #2A4A59;
   font-size: 16px;
   margin-bottom: 7%;
+  cursor: pointer;
+  padding: 6px;
+}
+
+#getGraphButton:hover{
+  background-color: #172931;
+  transition-duration: 0.4s;
 }
