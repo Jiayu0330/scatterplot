@@ -54,7 +54,9 @@ var drawGraph = function(data,svgName,w,h)
           .attr("cy",function(d) {return yScale(d)})
           .attr("r",7)
           .attr("stroke","#1F3641")
-          .attr("stroke-width",3);
+          .attr("stroke-width",3)
+          .append("title")
+          .text(function(d) {return d})
 
    //the legend
   var legend = svg.append("g")
